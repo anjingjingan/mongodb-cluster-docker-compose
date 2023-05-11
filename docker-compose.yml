@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  mongo:
+    image: mongo:6.0.5
+    restart: always
+    container_name: "mongo-cluster-1"
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+      - ./configdb:/data/configdb
+      - ./log:/var/log/mongodb
+      - ./key/mongo-keyfile:/var/mongo-keyfile
+    command: -f /data/configdb/mongod.conf 
